@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import api from './api/axiosConfig';
+import Layout from './components/Layout';
+import { Route, Routes } from 'react-router-dom';
+import { Home } from './components/home/Home';
+import { Movie, movieRespToMovieItem } from './components/movies/Movie';
 
 function App() {
+
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  const getMovies = async () => {
+    try {
+      const response = await api.get("movies");
+      if (response && response.data) {
+        const moviesResp: Movie[] = response?.data?.map((resp: any) => movieRespToMovieItem(resp));
+        setMovies(moviesResp);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route path='/' element={<Home movies={movies} />}>
+
+          </Route>
+        </Route>
+      </Routes>
     </div>
   );
 }
