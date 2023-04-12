@@ -3,8 +3,9 @@ import './App.css';
 import api from './api/axiosConfig';
 import Layout from './components/Layout';
 import { Route, Routes } from 'react-router-dom';
-import { Home } from './components/home/Home';
+import { HomePage } from './components/home/HomePage';
 import { Movie, movieRespToMovieItem } from './components/movies/Movie';
+import { Header } from './components/header/Header';
 
 function App() {
 
@@ -28,9 +29,10 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='/' element={<Home movies={movies} />}>
+          <Route path='/' element={<HomePage movies={movies} />}>
 
           </Route>
         </Route>

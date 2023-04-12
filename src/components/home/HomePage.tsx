@@ -1,7 +1,7 @@
 import { Movie } from "../movies/Movie"
-import { Movies } from "../movies/Movies";
+import { Movies } from "../movies/MoviesRenderer";
 
-export const Home = (props: { movies: Movie[] }) => {
+export const HomePage = (props: { movies: Movie[] }) => {
     return (
         <>
             <Movies movies={props.movies} />
