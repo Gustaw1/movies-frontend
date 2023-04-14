@@ -3,9 +3,11 @@ import './App.css';
 import api from './api/axiosConfig';
 import Layout from './components/Layout';
 import { Route, Routes } from 'react-router-dom';
-import { HomePage } from './components/home/HomePage';
+import { HomePage } from './pages/home/HomePage';
 import { Movie, movieRespToMovieItem } from './components/movies/Movie';
 import { Header } from './components/header/Header';
+import { Reviews } from './pages/reviews/Reviews';
+import { NotFound } from './pages/notFound/NotFound';
 
 function App() {
 
@@ -32,9 +34,9 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='/' element={<HomePage movies={movies} />}>
-
-          </Route>
+          <Route path='/' element={<HomePage movies={movies} />}></Route>
+          <Route path='/Reviews/:filmwebId' element={<Reviews />} />
+          <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
     </div>

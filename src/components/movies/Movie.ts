@@ -1,3 +1,5 @@
+import { Review } from "../reviews/Review";
+
 export interface Movie {
     id: string;
     imdbId: string;
@@ -8,7 +10,7 @@ export interface Movie {
     poster: string;
     genres: string[];
     backdrops: string[];
-    reviewsIds: string;
+    reviews: Review[];
 }
 
 export function movieRespToMovieItem(movie: any): Movie {
@@ -22,6 +24,6 @@ export function movieRespToMovieItem(movie: any): Movie {
         poster: movie.poster,
         genres: movie.genres,
         backdrops: movie.backdrops,
-        reviewsIds: movie.reviewsIds
+        reviews: movie.reviews
     };
 };

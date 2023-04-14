@@ -40,6 +40,13 @@
     align-items: center;
 }
 
+.movie-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+}
+
 @media only screen and (max-width: 800px) {
     .movie-detail {
         flex-direction: column;
